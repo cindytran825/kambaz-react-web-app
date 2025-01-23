@@ -18,21 +18,63 @@ export default function Dashboard() {
           </Link>
         </div>
         <div className="wd-dashboard-course"> ... </div>
-        <img src="/images/reactjs.jpg" width={200} />
+        <img src="/images/BA-Courses.jpg" width={200} />
             <div>
               <h5> CS3000 Object Oriented Design </h5>
               <p className="wd-dashboard-course-title">
-                Full Stack software developer  </p>
+                Learning how to code  </p>
               <button> Go </button>
             </div>
         <div className="wd-dashboard-course"> ... </div>
-        <img src="/images/reactjs.jpg" width={200} />
+        <img src="/images/image2.jpg" width={200} />
             <div>
               <h5> CS3500 Algorithms </h5>
               <p className="wd-dashboard-course-title">
-                Full Stack software developer  </p>
+                Learning Algorithms  </p>
               <button> Go </button>
             </div>
+            <div className="wd-dashboard-course"> ... </div>
+        <img src="/images/image3.jpg" width={200} />
+            <div>
+              <h5> ARTF1234 Color and Composition</h5>
+              <p className="wd-dashboard-course-title">
+                Learn about color  </p>
+              <button> Go </button>
+            </div>
+            <div className="wd-dashboard-course"> ... </div>
+        <img src="/images/image4.jpg" width={200} />
+            <div>
+              <h5> ARTF Abstract Art</h5>
+              <p className="wd-dashboard-course-title">
+                Learn how to draw abstract  </p>
+              <button> Go </button>
+            </div>
+            <div className="wd-dashboard-course"> ... </div>
+        <img src="/images/image5.jpg" width={200} />
+            <div>
+              <h5> MATH2344 Stats</h5>
+              <p className="wd-dashboard-course-title">
+                Statistics  </p>
+              <button> Go </button>
+            </div>
+            <div className="wd-dashboard-course"> ... </div>
+        <img src="/images/image6.jpg" width={200} />
+            <div>
+              <h5> MATH6762 Math Reasoning</h5>
+              <p className="wd-dashboard-course-title">
+                Proofs and Math  </p>
+              <button> Go </button>
+            </div>
+
+            <div className="wd-dashboard-course"> ... </div>
+        <img src="/images/image7.jpg" width={200} />
+            <div>
+              <h5> ENG2344 Writing 1</h5>
+              <p className="wd-dashboard-course-title">
+                Basics of Writing Essays  </p>
+              <button> Go </button>
+            </div>
+
       </div>
     </div>
 );}
