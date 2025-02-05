@@ -17,7 +17,7 @@
 //       <Link to="/Kambaz/Account/Signin" >Sign out</Link>
 //     </div>
 // );}
-import { Button, Form, FormControl } from "react-bootstrap";
+import {  Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 export default function Profile() {
   return (
