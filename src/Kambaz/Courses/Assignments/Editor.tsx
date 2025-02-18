@@ -1,164 +1,193 @@
 import { Button, Form, FormControl, FormSelect } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import * as db from "../../Databases";
+
 
 export default function AssignmentEditor() {
+     const { cid, aid } = useParams();
+     const assignments = db.assignments;
+//      console.log("Course ID:", cid);
+// console.log("Assignment ID from URL:", assignmentId);
+
+// {assignments.map((assignment: any) => {
+//      console.log("Database Assignment ID:", assignment._id);
+//      return null;
+//  })}
+
+     // const assignment = assignments.find((a: any) => a._id === assignmentId); // Find the specific assignment
+  
+     const assignment = assignments.find((assignment: any) => assignment._id === aid)
+     
      return (
-          <div id="wd-assignments-editor" className="bring-over">
-               <h3>
-                    <label htmlFor="wd-name">Assignment Name</label></h3>
+          <div>
+               
+          {/* {assignments
+             .filter((assignment: any) => assignment.course === cid )
+           
+               .map((assignment: any) => ( */}
+                         
 
-               <FormControl type="text" placeholder="A1 - ENV + HTML" /> <br />
-               <FormControl as="textarea"  rows={14} placeholder="The assignment is available online. Submit a link to the landing page of the landing page should be the Kambaz application with a link to the Lab exercises.
-Lab 1 should be the landing page of the Lab exercises and should include the following: Your full name and section. Links to each of the lab assignments. Link to the Kambaz application. Links to all relevant source code repositories. The Kambaz application should include a link to navigate back to the landing page."/>
-               <table>
-                    <br />
-                    <br /><tr><td valign="top" align="right" >
-                         <label htmlFor="wd-points">Points</label></td>
-                         <td><FormControl type="text" className="center-box" value={100} />
-                         </td>
-                    </tr><br /><tr>
-                         <td align="right" valign="top"><label htmlFor="wd-group">Assignment Group</label>
-                         </td>
-
-                         <td><FormSelect className="center-box" >
-                              <option selected>ASSIGNMENTS</option>
-                              <option value="1">One</option>
-                              <option value="2">Two</option>
-                              <option value="3">Three</option>
-                         </FormSelect>
-                         </td>
-                    </tr>
-                    <br />
-                    <tr>
-                         <td align="right" valign="top">
-                              <label htmlFor="wd-display-grade-as">Display Grade as</label>
-                         </td>
-                         <td><FormSelect className="center-box" >
-                              <option selected>Percentage</option>
-                              <option value="1">Letter</option>
-                              <option value="2">Number</option>
-                         </FormSelect>
-                         </td>
-                    </tr>
-                    <br />
-
-
-                    <tr>
-                         <td align="right" valign="top" >
-                              <label htmlFor="wd-submission-type" >Submission Type</label>
-                         </td>
-                         <div className="card move-card h-100">
-                              <div className="center-container"> <FormSelect  className="small-dropdown">
-                                   <option selected>Online</option>
-                                   <option value="1">Paper</option>
-                                   <option value="2">InPerson</option>
-                              </FormSelect></div>
-
-                         <br />
-                                   <div className="center-box-next">
-                                        <td align="left" valign="top">
-                                             <label htmlFor="wd-text-entry">Online Entry Options</label><br /><br />
-
-                                             <Form>
-                                                  <Form.Check
-                                                       type="checkbox"
-                                                       label="Text Entry"
-                                                       id="wd-text-entry"
-                                                  /><br />
-                                                  <Form.Check
-                                                       type="checkbox"
-                                                       label="Website URL"
-                                                       id="wd-website-url"
-                                                  /><br />
-                                                  <Form.Check
-                                                       type="checkbox"
-                                                       label="Media Recordings"
-                                                       id="wd-media-recordings"
-                                                  /><br />
-                                                  <Form.Check
-                                                       type="checkbox"
-                                                       label="Student Annotation"
-                                                       id="wd-student-annotation"
-                                                  /><br />
-                                                  <Form.Check
-                                                       type="checkbox"
-                                                       label="File Uploads"
-                                                       id="wd-file-upload"
-                                                  /><br/>
-                                             </Form>
-                                        </td>
-                                   </div>
+                         <div  id="wd-assignments-editor" className="bring-over">
                               
-
-                         </div>
-
-                    </tr>
-
-
-                    <br />
-
-
-                    <tr>
-                         <td align="right" valign="top">
-                              <label htmlFor="wd-assign-to">Assign</label>
-                         </td>
-                    </tr>
-                    <div className="card move-card-2 h-100"> <br />
-                         <td className="center-box-next">
-                              <label htmlFor="wd-assign-to">Assign To</label><br />
-                              <td className="small-dropdown-2"><FormControl className="small-dropdown-2" type="text" value="Everyone" />
-                              </td>
-
-                         </td>
-                         <tr>
-                              {/* <td className="center-box-next"></td> */}
-                              <td className="center-box-next"><br />
-                                   <label htmlFor="wd-due-date">Due</label><br />
-                                   <div className="small-dropdown-2"><FormControl className="small-dropdown-2" type="date" value="2024-05-13" id="wd-due-date" /></div>
+        
+                              <h3>
+                                   <label htmlFor="wd-name">Assignment Name</label></h3>
+                                   
+                              <FormControl type="text" placeholder={assignment.title} /> <br />
+                              <FormControl as="textarea" rows={14} placeholder="The assignment is available online. Submit a link to the landing page of the landing page should be the Kambaz application with a link to the Lab exercises.
+Lab 1 should be the landing page of the Lab exercises and should include the following: Your full name and section. Links to each of the lab assignments. Link to the Kambaz application. Links to all relevant source code repositories. The Kambaz application should include a link to navigate back to the landing page."/>
+                              <table>
                                    <br />
-                              </td>
+                                   <br /><tr><td valign="top" align="right" >
+                                        <label htmlFor="wd-points">Points</label></td>
+                                        <td><FormControl type="text" className="center-box" value={100} />
+                                        </td>
+                                   </tr><br /><tr>
+                                        <td align="right" valign="top"><label htmlFor="wd-group">Assignment Group</label>
+                                        </td>
 
-                         </tr>
-                         <tr>
+                                        <td><FormSelect className="center-box" >
+                                             <option selected>ASSIGNMENTS</option>
+                                             <option value="1">One</option>
+                                             <option value="2">Two</option>
+                                             <option value="3">Three</option>
+                                        </FormSelect>
+                                        </td>
+                                   </tr>
+                                   <br />
+                                   <tr>
+                                        <td align="right" valign="top">
+                                             <label htmlFor="wd-display-grade-as">Display Grade as</label>
+                                        </td>
+                                        <td><FormSelect className="center-box" >
+                                             <option selected>Percentage</option>
+                                             <option value="1">Letter</option>
+                                             <option value="2">Number</option>
+                                        </FormSelect>
+                                        </td>
+                                   </tr>
+                                   <br />
 
-                              <td className="center-box-next">
-                                   <label htmlFor="wd-available-from">Available from</label> <br />
-                                   <div className="half-size"> <FormControl type="date" value="2024-05-06" id="wd-available-from" /><br /> </div>
+
+                                   <tr>
+                                        <td align="right" valign="top" >
+                                             <label htmlFor="wd-submission-type" >Submission Type</label>
+                                        </td>
+                                        <div className="card move-card h-100">
+                                             <div className="center-container"> <FormSelect className="small-dropdown">
+                                                  <option selected>Online</option>
+                                                  <option value="1">Paper</option>
+                                                  <option value="2">InPerson</option>
+                                             </FormSelect></div>
+
+                                             <br />
+                                             <div className="center-box-next">
+                                                  <td align="left" valign="top">
+                                                       <label htmlFor="wd-text-entry">Online Entry Options</label><br /><br />
+
+                                                       <Form>
+                                                            <Form.Check
+                                                                 type="checkbox"
+                                                                 label="Text Entry"
+                                                                 id="wd-text-entry"
+                                                            /><br />
+                                                            <Form.Check
+                                                                 type="checkbox"
+                                                                 label="Website URL"
+                                                                 id="wd-website-url"
+                                                            /><br />
+                                                            <Form.Check
+                                                                 type="checkbox"
+                                                                 label="Media Recordings"
+                                                                 id="wd-media-recordings"
+                                                            /><br />
+                                                            <Form.Check
+                                                                 type="checkbox"
+                                                                 label="Student Annotation"
+                                                                 id="wd-student-annotation"
+                                                            /><br />
+                                                            <Form.Check
+                                                                 type="checkbox"
+                                                                 label="File Uploads"
+                                                                 id="wd-file-upload"
+                                                            /><br />
+                                                       </Form>
+                                                  </td>
+                                             </div>
 
 
-                              </td >
-                              <td className="center-box-next">
-                                   <label htmlFor="wd-available-until">Until</label> <br />
-                                   <div className="half-size"> <FormControl type="date" value="2024-05-20" id="wd-available-until" /><br /></div>
+                                        </div>
 
-                              </td>
-                         </tr>
-
-                    </div>
+                                   </tr>
 
 
+                                   <br />
+
+
+                                   <tr>
+                                        <td align="right" valign="top">
+                                             <label htmlFor="wd-assign-to">Assign</label>
+                                        </td>
+                                   </tr>
+                                   <div className="card move-card-2 h-100"> <br />
+                                        <td className="center-box-next">
+                                             <label htmlFor="wd-assign-to">Assign To</label><br />
+                                             <td className="small-dropdown-2"><FormControl className="small-dropdown-2" type="text" value="Everyone" />
+                                             </td>
+
+                                        </td>
+                                        <tr>
+                                             {/* <td className="center-box-next"></td> */}
+                                             <td className="center-box-next"><br />
+                                                  <label htmlFor="wd-due-date">Due</label><br />
+                                                  <div className="small-dropdown-2"><FormControl className="small-dropdown-2" type="date" value={assignment.getDueDate} id="wd-due-date" /></div>
+                                                  <br />
+                                             </td>
+
+                                        </tr>
+                                        <tr>
+
+                                             <td className="center-box-next">
+                                                  <label htmlFor="wd-available-from">Available from</label> <br />
+                                                  <div className="half-size"> <FormControl type="date" value={assignment.getAvailableFrom} id="wd-available-from" /><br /> </div>
+
+
+                                             </td >
+                                             <td className="center-box-next">
+                                                  <label htmlFor="wd-available-until">Until</label> <br />
+                                                  <div className="half-size"> <FormControl type="date" value={assignment.getAvailableUntil} id="wd-available-until" /><br /></div>
+
+                                             </td>
+                                        </tr>
+
+                                   </div>
 
 
 
 
 
-               </table>
 
-               <hr />
-               <table width="100%" ><tr>
-                    <td align="right">
-                         <Button variant="secondary" size="sm" id="wd-add-module-btn">
 
-                              Cancel
-                         </Button> &nbsp;
-                         <Button variant="danger" size="sm" id="wd-add-module-btn">
+                              </table>
 
-                              Save
-                         </Button>
-                    </td>
-               </tr></table>
+                              <hr />
+                              <table width="100%" ><tr>
+                                   <td align="right">
+                                        <Link className="btn btn-lg btn-secondary" id="wd-add-module-btn" to={`/Kambaz/Courses/${cid}/Assignments`}>
 
+                                             Cancel
+                                        </Link> &nbsp;
+                                        <Link className="btn btn-lg btn-danger" id="wd-add-module-btn" to={`/Kambaz/Courses/${cid}/Assignments`}>
+                                        
+                                             Save
+                                        </Link>
+                                   </td>
+                              </tr></table>
+           
+                         </div>
+   {/* ))
+           }  */}
           </div>
-
      );
 }
 
