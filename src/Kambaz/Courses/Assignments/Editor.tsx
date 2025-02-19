@@ -33,7 +33,7 @@ export default function AssignmentEditor() {
                               <h3>
                                    <label htmlFor="wd-name">Assignment Name</label></h3>
                                    
-                              <FormControl type="text" placeholder={assignment.title} /> <br />
+                              <FormControl type="text" placeholder={assignment?.title} /> <br />
                               <FormControl as="textarea" rows={14} placeholder="The assignment is available online. Submit a link to the landing page of the landing page should be the Kambaz application with a link to the Lab exercises.
 Lab 1 should be the landing page of the Lab exercises and should include the following: Your full name and section. Links to each of the lab assignments. Link to the Kambaz application. Links to all relevant source code repositories. The Kambaz application should include a link to navigate back to the landing page."/>
                               <table>
@@ -140,7 +140,7 @@ Lab 1 should be the landing page of the Lab exercises and should include the fol
                                              {/* <td className="center-box-next"></td> */}
                                              <td className="center-box-next"><br />
                                                   <label htmlFor="wd-due-date">Due</label><br />
-                                                  <div className="small-dropdown-2"><FormControl className="small-dropdown-2" type="date" value={assignment.getDueDate} id="wd-due-date" /></div>
+                                                  <div className="small-dropdown-2"><FormControl className="small-dropdown-2" type="date" value={assignment?.getDueDate} id="wd-due-date" /></div>
                                                   <br />
                                              </td>
 
@@ -149,13 +149,13 @@ Lab 1 should be the landing page of the Lab exercises and should include the fol
 
                                              <td className="center-box-next">
                                                   <label htmlFor="wd-available-from">Available from</label> <br />
-                                                  <div className="half-size"> <FormControl type="date" value={assignment.getAvailableFrom} id="wd-available-from" /><br /> </div>
+                                                  <div className="half-size"> <FormControl type="date" value={assignment?.getAvailableFrom} id="wd-available-from" /><br /> </div>
 
 
                                              </td >
                                              <td className="center-box-next">
                                                   <label htmlFor="wd-available-until">Until</label> <br />
-                                                  <div className="half-size"> <FormControl type="date" value={assignment.getAvailableUntil} id="wd-available-until" /><br /></div>
+                                                  <div className="half-size"> <FormControl type="date" value={assignment?.getAvailableUntil} id="wd-available-until" /><br /></div>
 
                                              </td>
                                         </tr>

@@ -32,7 +32,7 @@ import Styles from "./Styles";
 import Add from "./Add";
 import Square from "./Square";
 import Highlight from "./Highlight";
-import AddPathParameters from "./AddPathParameters";
+// import AddPathParameters from "./AddPathParameters";
 import PathParameters from "./PathParameters";
 // import Add from "./Add";
 
