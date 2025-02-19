@@ -2,7 +2,6 @@ import { ListGroup } from "react-bootstrap";
 import ModulesControls from "./ModulesControls";
 import { BsGripVertical } from "react-icons/bs";
 import LessonControlButtons from "./LessonControlButtons";
-import ControlButtonsPlus from "./ControlButtonsPlus";
 import { useParams } from "react-router";
 import * as db from "../../Databases";
 
