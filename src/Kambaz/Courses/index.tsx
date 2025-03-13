@@ -4,12 +4,15 @@ import Modules from "./Modules";
 import Home from "./Home";
 import Assignments from "./Assignments";
 import AssignmentEditor from "./Assignments/Editor";
+import AddAssignmentEditor from "./Assignments/AddEditor";
 import { FaAlignJustify } from "react-icons/fa";
 import PeopleTable from "./People/Table";
-import { courses } from "../Databases";
-export default function Courses() {
+
+
+export default function Courses({ courses }: { courses: any[]; }) {
   const { cid } = useParams();
   const course = courses.find((course) => course._id === cid);
+  console.log("cid:", cid);
   const { pathname } = useLocation();
      return (
        <div id="wd-courses">
@@ -25,13 +28,13 @@ export default function Courses() {
             <CourseNavigation />
             </div>
             <div className="flex-fill">
-         
             <Routes>
               <Route path="/" element={<Navigate to="Home" />} />
               <Route path="Home" element={<Home />} />
               <Route path="Modules" element={<Modules />} />
               <Route path="Assignments" element={<Assignments />} />
               <Route path="Assignments/:aid" element={<AssignmentEditor />} />
+              <Route path="Assignments/New" element={<AddAssignmentEditor />} />
               <Route path="People" element={<PeopleTable />} />
             </Routes>
          

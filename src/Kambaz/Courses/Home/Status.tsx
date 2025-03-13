@@ -7,11 +7,17 @@ import { IoMdHome } from "react-icons/io";
 import { RiBarChart2Fill } from "react-icons/ri";
 import { TbSpeakerphone } from "react-icons/tb";
 import { FaBell } from "react-icons/fa";
+import { useSelector } from "react-redux";
 
 
 
 
 export default function CourseStatus() {
+  const { currentUser } = useSelector((state: any) => state.accountReducer);
+    
+     if (currentUser?.role !== "FACULTY") {
+          return null; 
+        }
      return (
       <div id="wd-course-status"
          style={{ width: "350px" }}>
