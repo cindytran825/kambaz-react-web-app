@@ -13,7 +13,7 @@ import SaveButton from "./SaveButton";
 export default function AddAssignmentEditor(
 ) {
 
-     const { cid, aid } = useParams();
+     const { cid } = useParams();
      const dispatch = useDispatch();
      // const assignments = db.assignments;
      const [assignmentTitle, setAssignmentTitle] = useState("");
@@ -23,7 +23,7 @@ export default function AddAssignmentEditor(
      const [from, setFrom] = useState("");
      const [until, setUntil] = useState("");
      const { assignments } = useSelector((state: any) => state.assignmentReducer);
-     const navigate = useNavigate();
+     // const navigate = useNavigate();
      
         console.log("addAssignment:", addAssignment);
 

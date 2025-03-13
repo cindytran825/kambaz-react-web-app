@@ -1,11 +1,11 @@
 import { Modal, FormControl, Button } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import * as db from "../../Databases";
+// import * as db from "../../Databases";
 export default function ModuleEditor({ show, handleClose, dialogTitle, moduleName, setModuleName, addModule,}: {
  show: boolean; handleClose: () => void; dialogTitle: string; moduleName: string; setModuleName: (name: string) => void;
  addModule: () => void; }) {
      const { currentUser } = useSelector((state: any) => state.accountReducer);
-     const { enrollments } = db;
+     // const { enrollments } = db;
      if (currentUser?.role !== "FACULTY") {
           return null; 
         }

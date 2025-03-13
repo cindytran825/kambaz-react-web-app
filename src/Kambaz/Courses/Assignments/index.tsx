@@ -1,4 +1,4 @@
-import { Button, FormControl, ListGroup, Modal } from "react-bootstrap";
+import { Button, FormControl, ListGroup } from "react-bootstrap";
 import { BsGripVertical } from "react-icons/bs";
 import { FaPlus } from "react-icons/fa";
 import { HiMagnifyingGlass } from "react-icons/hi2";
@@ -114,7 +114,7 @@ export default function Assignments() {
                   <b> Not Available until </b> {assignment.getAvailableUntil} | 
                   <b> Due </b> {assignment.dueDate} | 
                   {assignment.points} pts
-                  <DeleteButton assignmentTitle={assignment._id} deleteAssignment={(assignmentTitle) => {
+                  <DeleteButton assignmentTitle={assignment._id} deleteAssignment={() => {
                   dispatch(deleteAssignment(assignment._id))}}/>
                 </p>
                
