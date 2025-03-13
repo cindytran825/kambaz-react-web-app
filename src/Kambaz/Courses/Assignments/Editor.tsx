@@ -1,12 +1,10 @@
 import { Button, Form, FormControl, FormSelect } from "react-bootstrap";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import * as db from "../../Databases";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { updateAssignment, addAssignment }
      from "./reducer";
      import { v4 as uuidv4 } from "uuid";
-import SaveButton from "./SaveButton";
 import SaveButton2 from "./SaveButton2";
 // {addAssignment}: {addAssignment:()=>void;}
 
@@ -24,7 +22,7 @@ export default function AssignmentEditor(
      const [from, setFrom] = useState("");
      const [until, setUntil] = useState("");
      const { assignments } = useSelector((state: any) => state.assignmentReducer);
-     const navigate = useNavigate();
+     // const navigate = useNavigate();
 
         console.log("addAssignment:", addAssignment);
 

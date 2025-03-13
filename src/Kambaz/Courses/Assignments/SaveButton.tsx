@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { Button } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import {  useNavigate, useParams } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
-import { addAssignment, updateAssignment } from "./reducer";
 // {addAssignment}: {addAssignment:()=>void;}
 export default function SaveButton({addAssignment}: {addAssignment:()=>void; } ){
      const { cid, aid } = useParams();

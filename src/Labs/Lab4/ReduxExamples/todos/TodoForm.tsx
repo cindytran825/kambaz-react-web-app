@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, updateTodo, setTodo } from "./todosReducer";
-import { Button, Col, Form, FormControl, ListGroup } from "react-bootstrap";
+import { Button, Form, FormControl, ListGroup } from "react-bootstrap";
 
 export default function TodoForm(
 ) {
