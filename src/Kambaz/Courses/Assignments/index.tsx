@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { addAssignment, deleteAssignment, updateAssignment } from "./reducer";
 import { v4 as uuidv4 } from "uuid";
 import DeleteButton from "./DeleteButton";
+import * as assignmentsClient from "./client";
 
 export default function Assignments() {
   const { cid, aid } = useParams();
@@ -39,7 +40,10 @@ export default function Assignments() {
     console.log("Updated Assignments:", assignments);
   }, [assignments]);
 
-  const handleAddAssignment = () => {
+  
+  
+  const handleAddAssignment = async () => {
+    if (!cid) return;
     const newAssignment = {
       _id: uuidv4(), 
       title: assignmentTitle,
@@ -52,12 +56,23 @@ export default function Assignments() {
       assignment: aid,
     };
     if (assignments) {
-           dispatch(updateAssignment(newAssignment));
+      const assignment = await assignmentsClient.updateAssignment(newAssignment);
+          //  dispatch(updateAssignment(newAssignment));
+          dispatch(updateAssignment(assignment));
          } else {
-           dispatch(addAssignment(newAssignment)); 
+          const assignment = await assignmentsClient.handleAddAssignment(cid, newAssignment);
+                    dispatch(addAssignment(assignment)); 
+          //  dispatch(addAssignment(newAssignment)); 
          }
    
   };
+
+  const removeAssignment = async (assignmentId: string) => {
+    await assignmentsClient.deleteAssignment(assignmentId);
+    dispatch(deleteAssignment(assignmentId));
+  };
+
+  
 
   return (
     
@@ -114,8 +129,7 @@ export default function Assignments() {
                   <b> Not Available until </b> {assignment.getAvailableUntil} | 
                   <b> Due </b> {assignment.dueDate} | 
                   {assignment.points} pts
-                  <DeleteButton assignmentTitle={assignment._id} deleteAssignment={() => {
-                  dispatch(deleteAssignment(assignment._id))}}/>
+                  <DeleteButton assignmentTitle={assignment._id} deleteAssignment={(assignmentId) => removeAssignment(assignmentId)}/>
                 </p>
                
                 

@@ -9,7 +9,7 @@ export default function DeleteButton({
      deleteAssignment: (assignmentTitle: string) => void;
    }) {
      const [showModal, setShowModal] = useState(false);
-   
+     
      return (
        <div className="float-end">
          <FaTrash

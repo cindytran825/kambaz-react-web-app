@@ -8,6 +8,7 @@ import {  addAssignment }
      import { v4 as uuidv4 } from "uuid";
 import SaveButton from "./SaveButton";
 // {addAssignment}: {addAssignment:()=>void;}
+import * as assignmentsClient from "./client";
 
 
 export default function AddAssignmentEditor(
@@ -27,7 +28,8 @@ export default function AddAssignmentEditor(
      
         console.log("addAssignment:", addAssignment);
 
-        const handleAddAssignment = () => {
+        const handleAddAssignment = async () => {
+          if (!cid) return;
           const newAssignment = {
             _id: uuidv4(), 
             title: assignmentTitle,
@@ -41,10 +43,27 @@ export default function AddAssignmentEditor(
           //  if (assignments) {
                //      dispatch(updateAssignment(newAssignment));
                //    } else {
-                    dispatch(addAssignment(newAssignment)); 
+                    const assignment = await assignmentsClient.handleAddAssignment(cid, newAssignment);
+                    dispatch(addAssignment(assignment)); 
                //    }
           // dispatch(addAssignment(newAssignment));
         };
+
+     //    const createAssignment = async () => {
+     //      if (!cid) return;
+     //      const newAssignment = {
+     //           _id: uuidv4(), 
+     //           title: assignmentTitle,
+     //           course: cid,
+     //           description: assignmentDes, 
+     //           points: assignmentPoints, 
+     //           dueDate: dueDate, 
+     //           getAvailableFrom: from, 
+     //           getAvailableUntil: until, 
+     //         };
+     //      const assignment = await assignmentsClient.createAssignment(newAssignment);
+     //      dispatch(addAssignment(assignment));
+     //    };
 
      return (
           <div>
@@ -192,6 +211,7 @@ export default function AddAssignmentEditor(
                               </Link> &nbsp;
                              
                               <SaveButton addAssignment={handleAddAssignment} />
+                              {/* <SaveButton addAssignment={createAssignment} /> */}
                          </td>
                     </tr></table>
 
