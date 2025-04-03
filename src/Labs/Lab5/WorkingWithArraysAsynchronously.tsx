@@ -6,16 +6,25 @@ import { TiDelete } from "react-icons/ti";
 import { FaPencil } from "react-icons/fa6";
 export default function WorkingWithArraysAsynchronously() {
      const [errorMessage, setErrorMessage] = useState(null);
-  const updateTodo = async (_todo: any) => {
-    try {
+//   const updateTodo = async (_todo: any) => {
+//     try {
+//      const updateTodo = async (todo: any) => {
+//           await client.updateTodo(todo);
+//           setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
+//         };
+//      } catch (error: any) {
+//           setErrorMessage(error.response.data.message);
+//         }
+//      }
+
      const updateTodo = async (todo: any) => {
-          await client.updateTodo(todo);
-          setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
+          try {
+            await client.updateTodo(todo);
+            setTodos(todos.map((t) => (t.id === todo.id ? todo : t)));
+          } catch (error: any) {
+               setErrorMessage(error.response.data.message);
+          }
         };
-     } catch (error: any) {
-          setErrorMessage(error.response.data.message);
-        }
-     }
 
         const deleteTodo = async (todo: any) => {
           try {
