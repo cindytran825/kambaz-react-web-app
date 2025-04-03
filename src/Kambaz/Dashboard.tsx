@@ -43,12 +43,12 @@ export default function Dashboard({
   //   dispatch(addModule(module));
   // };
 
-  const fetchEnrollments = async () => {
-    if (!currentUser) return;
-    const enrollmentsData = await enrollmentsClient.fetchAllEnrollments(course._id);
-    // setShowAllCourses(enrollmentsData); 
-    dispatch(addEnrollment(enrollmentsData));
-  };
+  // const fetchEnrollments = async () => {
+  //   if (!currentUser) return;
+  //   const enrollmentsData = await enrollmentsClient.fetchAllEnrollments(course._id);
+  //   // setShowAllCourses(enrollmentsData); 
+  //   dispatch(addEnrollment(enrollmentsData));
+  // };
   
   // useEffect(() => {
   //   fetchEnrollments();
