@@ -6,7 +6,7 @@ import Courses from "./Courses";
 import "./styles.css";
 // import * as db from "./Databases";
 import { useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 import * as courseClient from "./Courses/client";
 import ProtectedRoute from "./Account/ProtectedRoute";
 import { useSelector } from "react-redux";
@@ -50,7 +50,7 @@ export default function Kambaz() {
 
   
   const deleteCourse = async (courseId: any) => {
-    const status = await courseClient.deleteCourse(courseId);
+    // const status = await courseClient.deleteCourse(courseId);
     setCourses(courses.filter((course) => course._id !== courseId));
   };
   const updateCourse = async () => {
