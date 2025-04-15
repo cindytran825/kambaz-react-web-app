@@ -5,9 +5,15 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 // import React, { useState } from "react";
 import { addEnrollment, deleteEnrollment } from "./Courses/reducerEnroll";
-import React from "react";
+import React, { useEffect, useState } from "react";
 // import * as enrollmentsClient from "./client";
 // import React from "react";
+
+
+import * as courseClient from "./Courses/client";
+import * as accountClient from "./Account/client";
+// import * as enrollmentClient from "./Courses/Enrollments/client";
+import { setCourses } from "./Courses/reducer";
 
 export default function Dashboard({
   courses,
@@ -25,53 +31,31 @@ export default function Dashboard({
   setCourse: (course: { _id: string; name: string; description: string }) => void;
   addCourse: (course: { _id: string; name: string; description: string }) => void;
   deleteCourse: (courseId: string) => void;
-  // editCourse: (courseId: string) => void;
   updateCourse: (course: { _id: string; name: string; description: string }) => void;
 }) {
   const dispatch = useDispatch();
   const { currentUser } = useSelector((state: any) => state.accountReducer);
   const { enrollments } = useSelector((state: any) => state.enrollmentReducer);
-  const [showAllCourses, setShowAllCourses] = React.useState(false);
-  // const enrollInCourse = async (userId, courseId) => {
-  //   return axios.post(`${API_BASE}/enrollments`, { userId, courseId });
-  // };
 
-  // const createModuleForCourse = async () => {
-  //   // if (!cid) return;
-  //   const newModule = { name: moduleName, course: cid };
-  //   const module = await coursesClient.createModuleForCourse(cid, newModule);
-  //   dispatch(addModule(module));
-  // };
+    const [showAllCourses, setShowAllCourses] = React.useState(false);
+    
 
-  // const fetchEnrollments = async () => {
-  //   if (!currentUser) return;
-  //   const enrollmentsData = await enrollmentsClient.fetchAllEnrollments(course._id);
-  //   // setShowAllCourses(enrollmentsData); 
-  //   dispatch(addEnrollment(enrollmentsData));
-  // };
-  
-  // useEffect(() => {
-  //   fetchEnrollments();
-  // }, []);
+    
 
-  // useEffect(() => {
-  //   const fetchCourses = async (data: any) => {
-  //     const endpoint = showAllCourses ? '/api/courses' : '/api/users/current/courses'; // If showAllCourses is true, fetch all courses
-  //     try {
-  //       const response = await fetch(endpoint);
-  //       if (response.ok) {
-  //         const data = await response.json();
-  //         fetchCourses(data); // Set the fetched courses to the state
-  //       } else {
-  //         console.error("Failed to fetch courses");
-  //       }
-  //     } catch (error) {
-  //       console.error('Error fetching courses:', error);
-  //     }
-  //   };
 
-  //   fetchCourses(data); // Fetch courses whenever the component mounts or showAllCourses state changes
-  // }, [showAllCourses]);
+    const getAllCourses = async () => {
+      const courses = await courseClient.fetchAllCourses();
+      console.log("Fetched all courses:", courses); 
+      setCourses(courses);
+    }
+
+    useEffect(() => {
+      if (showAllCourses) {
+        getAllCourses();
+      }
+    }, [courses, showAllCourses]);
+
+    console.log("Courses from Redux store:", courses);
 
 
   return (
@@ -162,19 +146,24 @@ export default function Dashboard({
       className="float-end"
     >
       {showAllCourses ? "Show My Enrollments" : "Show All Courses"}
+     
     </Button> 
 
     <div id="wd-dashboard-courses">
       <Row xs={1} md={5} className="g-4">
-        {courses
-          // .filter((course) => {
-          //   if (showAllCourses) {
-              
-          //     return true;
-          //   }
-          //   return fetchEnrollments();
-          //   // return fetchEnrollments();
-          // })          
+      {courses
+            .filter((course) => {
+              if (showAllCourses) {
+                return true;
+              }
+              // Show only courses user is enrolled in
+              return enrollments.some(
+                (enrollment: { user: string; course: string }) =>
+                  enrollment.user === currentUser._id &&
+                  enrollment.course === course._id
+              );
+            }
+          )        
           .map((course) => (
             <Col className="wd-dashboard-course" style={{ width: "300px" }} key={course._id}>
               <Card>
@@ -274,3 +263,5 @@ export default function Dashboard({
     </div> 
   ); 
 }
+
+
