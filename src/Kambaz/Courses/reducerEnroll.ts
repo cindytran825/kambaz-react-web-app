@@ -4,9 +4,9 @@ import { v4 as uuidv4 } from "uuid";
 const initialState = {
      enrollments: enrollments,
 };
-const saveEnrollments = (enrollments: any) => {
-     localStorage.setItem("enrollments", JSON.stringify(enrollments));
-   };
+// const saveEnrollments = (enrollments: any) => {
+//      localStorage.setItem("enrollments", JSON.stringify(enrollments));
+//    };
 const coursesEnrollSlice = createSlice({
   name: "enrollment",
   initialState,
