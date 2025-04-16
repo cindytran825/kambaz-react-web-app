@@ -114,9 +114,9 @@ export default function Dashboard({
                     <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">
                     {enrolling && (
               <button onClick={(event) => {
-                event.preventDefault();
-                updateEnrollment(course._id, !course.enrolled);
-              }} className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} >
+                        event.preventDefault();
+                        updateEnrollment(course._id, !course.enrolled);
+                      }}className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} >
                 {course.enrolled ? "Unenroll" : "Enroll"}
               </button>
             )}
@@ -199,44 +199,17 @@ export default function Dashboard({
                     </Card.Text>
                     <Button variant="primary">Go</Button>
 
-                    {enrollments.some(
-                      (enrollment: { user: string; course: string; _id: string }) =>
-                        enrollment.user === currentUser._id &&
-                        enrollment.course === course._id
-                    ) ? (
-                      <Button
-                        variant="danger"
-                        onClick={() =>
-                          dispatch(
-                            deleteEnrollment(
-                              enrollments.find(
-                                (enrollment: { user: string; course: string; _id: string }) =>
-                                  enrollment.user === currentUser._id &&
-                                  enrollment.course === course._id
-                              )._id
-                            )
-                          )
-                        }
-                        className="float-end"
-                      >
-                        Unenroll
-                      </Button>
-                    ) : (
-                      <Button
-                        variant="success"
-                        onClick={() =>
-                          dispatch(
-                            addEnrollment({
-                              user: currentUser._id,
-                              course: course._id,
-                            })
-                          )
-                        }
-                        className="float-end"
-                      >
-                        Enroll
-                      </Button>
-                    )}
+                   
+                    {enrolling && (
+              <button onClick={(event) => {
+                        event.preventDefault();
+                        updateEnrollment(course._id, !course.enrolled);
+                      }}className={`btn ${ course.enrolled ? "btn-danger" : "btn-success" } float-end`} >
+                {course.enrolled ? "Unenroll" : "Enroll"}
+              </button>
+            )}
+                    
+                   
 
                     {currentUser.role === "ADMIN" && (
                       <>
@@ -274,7 +247,7 @@ export default function Dashboard({
   </>
     
 
-)}
+ )} 
     </div> 
   ); 
 }
