@@ -7,7 +7,7 @@ import { FaPlus } from "react-icons/fa";
 export default function Users() {
  const [users, setUsers] = useState<any[]>([]);
  const [role, setRole] = useState("");
- const [_name, setName] = useState("");
+ const [name, setName] = useState("");
   const filterUsersByName = async (name: string) => {
     setName(name);
     if (name) {
@@ -66,6 +66,17 @@ export default function Users() {
         <option value="TA">Assistants</option> <option value="FACULTY">Faculty</option>
         <option value="ADMIN">Administrators</option>
       </select>
-     <PeopleTable users={users} />
+      
+      {(role || name) && (
+        <p className="text-muted">
+          {role && <>Filtering by role: <strong>{role}</strong></>}
+          {role && name && <> | </>}
+          {name && <>Search term: <strong>{name}</strong></>}
+        </p>
+      )}
+
+      <PeopleTable users={users} />
+
+
    </div>
 );}
